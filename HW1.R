@@ -116,3 +116,7 @@ install.packages("tidyverse")
 
 library(tidyverse)
 
+
+#Reading data into R
+
+HBraw<-read.csv("C:/Users/djter/Downloads/HB raw.csv")
