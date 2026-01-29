@@ -110,8 +110,9 @@ subset(df, name=="Doug")
 df$log_value <- log(df$value)
 df
 
+#installing packages
 
+install.packages("tidyverse")
 
-
-
+library(tidyverse)
 
