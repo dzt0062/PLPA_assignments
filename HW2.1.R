@@ -123,16 +123,16 @@ ggplot()+
   theme_classic()+ 
   geom_text_repel(data = diff.abund.label, aes(x = lfc_CropSoybean, y = log10_pvalue, color = diff_CropSoybean, label = Label))+
   scale_color_manual(values = cbbPalette, name="Significant")+
-  theme_classic() + 
-  xlab("Log fold change Soil vs. Soybean") +
+  theme_classic()+ 
+  xlab("Log fold change Soil vs. Soybean")+
   ylab("-log10 p-value")
 
-volcano <- ggplot() + 
-  geom_point(data = diff.abund, aes(x = lfc_CropSoybean, y = log10_pvalue)) + 
-  geom_point(data = diff.abund.label, aes(x = lfc_CropSoybean, y = log10_pvalue), color = "red", shape = 17, size = 4) +
-  geom_text_repel(data = diff.abund.label, aes(x = lfc_CropSoybean, y = log10_pvalue, label = Label), color = "red") + 
-  theme_classic() + 
-  xlab("Log fold change Soil vs. Soybean") +
+volcano <- ggplot()+ 
+  geom_point(data = diff.abund, aes(x = lfc_CropSoybean, y = log10_pvalue))+ 
+  geom_point(data = diff.abund.label, aes(x = lfc_CropSoybean, y = log10_pvalue), color = "red", shape = 17, size = 4)+
+  geom_text_repel(data = diff.abund.label, aes(x = lfc_CropSoybean, y = log10_pvalue, label = Label), color = "red")+ 
+  theme_classic()+ 
+  xlab("Log fold change Soil vs. Soybean")+
   ylab("-log10 p-value")
 volcano
 
