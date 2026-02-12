@@ -20,24 +20,16 @@
 
 cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-#2
+###2
 data.toxin <- read.csv("C:/Users/djter/Downloads/MycotoxinData.csv", na.strings = "na")
 
 toxin.box <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   geom_boxplot()+
-  jitter_dodge()
   ylab("DON (ppm)")+
   xlab("")
 toxin.box
 
-#3
-toxin.bar<- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
-  geom_bar(position = dodge)+
-  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5)
-  ylab("DON (ppm)")+
-  xlab("")
-toxin.bar
-
+###3
 toxin.bar1 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   stat_summary(fun = mean, geom = "bar", position = position_dodge())+
   stat_summary(fun.data = mean_se, geom = "errorbar", position = position_dodge())+
@@ -45,9 +37,10 @@ toxin.bar1 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   xlab("")
 toxin.bar1
 
-#4
+###4
 toxin.bar2 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
-  geom_bar(position = dodge)+ 
+  stat_summary(fun = mean, geom = "bar", position = position_dodge())+
+  stat_summary(fun.data = mean_se, geom = "errorbar", position = position_dodge())+
   geom_point(position = position_jitterdodge(0.05))+
   ylab("DON (ppm)")+
   xlab("")+
@@ -55,6 +48,16 @@ toxin.bar2 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   theme_classic()
 toxin.bar2
 
+toxin.box1 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
+  geom_boxplot()+
+  ylab("DON (ppm)")+
+  geom_point(position = position_jitterdodge(0.05))+
+  xlab("")+
+  scale_color_manual(values = cbbPalette, name = "", labels = c())+
+  theme_classic()
+toxin.box1
+
+###5
 toxin.bar3 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   geom_jitter(width = 0.5, alpha = 0.5)+
   stat_summary(fun = mean, geom = "bar", aes(group = Cultivar))+
@@ -67,6 +70,7 @@ toxin.bar3 <- ggplot(data.toxin, aes(x = Treatment, y = DON, color = Cultivar))+
   facet_wrap(~Cultivar, scales = "free")
 toxin.bar3
 
+###6
 toxin.bar4<- ggplot(data.toxin, aes(x = Treatment, y = DON, fill = Cultivar))+
   geom_boxplot(color= "#000000", position = position_dodge(width = 0.85))+
   scale_fill_manual(values = c("#000000", "#E69F00"))+
@@ -77,3 +81,5 @@ toxin.bar4<- ggplot(data.toxin, aes(x = Treatment, y = DON, fill = Cultivar))+
   theme_classic()+
   facet_wrap(~Cultivar)
 toxin.bar4
+
+
