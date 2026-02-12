@@ -82,4 +82,3 @@ toxin.bar4<- ggplot(data.toxin, aes(x = Treatment, y = DON, fill = Cultivar))+
   facet_wrap(~Cultivar)
 toxin.bar4
 
-
