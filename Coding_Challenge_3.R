@@ -13,7 +13,7 @@ data.toxin
 toxin.box4<- ggplot(data.toxin, aes(x = Treatment, y = DON, fill = Cultivar))+ #boxplot of DON by Treatment#
   geom_boxplot(color= "#000000", position = position_dodge(width = 0.85))+ 
   scale_fill_manual(values = c("#56B4E9", "#009E73"))+ #cbbPallette
-  geom_point(shape = 21, color = "#000000", alpha = 0.6, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.85))+ #Jitter points over the boxplot and fill the points and boxplots Cultivar with two colors from the cbbPallete 
+  geom_point(shape = 21, color = "#000000", alpha = 0.6, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.85))+ #Jitter points over the boxplot and fill the points and boxplots Cultivar with two colors from the cbbPallete with transparecy set to .6
   ylab("DON (ppm)")+ #labeling y axis
   xlab("")+ #no label for x axis
   scale_color_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]), name = "Cultivar", labels = c("Ambassador", "Wheaton"))+
