@@ -114,6 +114,18 @@ fs::dir_tree() #provides file tree
     └── figure-html
 ```
 
+#make zenodo account
+#link your git hub
+#find your repisitory
+#create a release
+#go back to git hub/repository
+#create a tag name
+#describe it if desired
+#publish and create a zip source code
+#it will take awhile to sync
+#copy markdown and paste into readme file
+#commit and push
+
 
 
 
