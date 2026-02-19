@@ -85,6 +85,37 @@ mat1[2,]
 - [RMnotes](PLPA_assignments/RMnotes.md)
 
 
+install.packages(fs)
+
+```r
+fs::dir_tree() #provides file tree
+```
+
+```
+├── 134014729519277643.jpg
+├── Bull_richness.csv
+├── Coding_Challenge_1.R      #assignment
+├── Coding_Challenge_2.R    
+├── Coding_Challenge_3.R
+├── HW1.R
+├── HW2.1.R
+├── HW2.R
+├── HW3.R
+├── MycotoxinData.csv
+├── PLPA_assignments.Rproj
+├── README.html
+├── README.md                 #Top level directory README
+├── RMnotes.html
+├── RMnotes.md
+├── RMnotes.Rmd
+└── RMnotes_files
+    ├── figure-gfm
+    │   └── pressure-1.png
+    └── figure-html
+```
+
+
+
 
 
 
