@@ -1,0 +1,83 @@
+---
+title: "R markdown notes" ###YAML Header###
+author: "DJT"
+date: "2026-02-18"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+  md_document:
+    variant: gfm
+  word_document:
+  pdf_document:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+#knitting is required to create the actual visual of the rmarkdown code
+
+#insert code chunk#can be made by hand
+
+Example!!
+```{r}
+summary(mtcars)
+library(ggplot2)
+data(mtcars)
+ggplot(mtcars, aes(x= wt, y=mpg))+
+    geom_smooth(method = lm, se = FALSE) +
+  geom_point(aes(color = wt)) +
+  xlab("Weight") + 
+  ylab("Miles per gallon") +
+  scale_colour_gradient(low = "forestgreen", high = "black")
+
+library(knitr)
+kable(mtcars, digits = 3, format = "markdown")
+```
+#Include vs echo allows for showing the code with out the output and vice verso via True/False
+#headers require spacing
+
+headers
+
+# Doug
+
+*Doug*
+
+**Doug**
+
+>> "you miss 100% of the shots you dont take Wayn Gretzky."
+>
+> --- Michael Scott
+
+[link to my github](https://github.com/dzt0062/PLPA_assignments)
+
+![image](134014729519277643.jpg)
+
+## table
+```{r}
+library(knitr)
+kable(mtcars, digits = 3, format = "markdown")
+```
+
+
