@@ -116,7 +116,7 @@ Within the YAML header I chose an html format;
 
 # Question 4
 ## Push the .docx or .pdf and .md files to GitHub inside a directory called Coding Challenge 4.
-Created a new repository specifically for this assignment
+Created a new repository specifically for this assignemnt
 
 # Question 5
 ## Now edit, commit, and push the README file for your repository and include the following elements.
@@ -125,5 +125,6 @@ Created a new repository specifically for this assignment
 
 # Question 6
 ## Please turn in the file generated in question 3a to canvas with a clickable link to your GitHub repository within the document. 
+
 
 
