@@ -354,63 +354,39 @@ display: none;
 
 <div id="plpa_assignments" class="section level1">
 <h1>PLPA_assignments</h1>
-<p>Class assignments</p>
-<p>Test</p>
-<p>Test</p>
-<p>#this is a comment</p>
-<p>#Exercise number 1 2+2 2-2 3*3 3/4</p>
-<p>#Exercise 2 x&lt;-2 y=3</p>
-<p>x+y x-y</p>
-<p>name &lt;- “Doug” eight&lt;-“8”</p>
-<p>x+eight</p>
-<p>class(eight) class(x)</p>
-<p>vec&lt;-c(1,2,3,4,5,6,7,8,9,10) vec1&lt;-C(1:10) vec2&lt;-c(“Doug”,
-“Jade”) Vec3&lt;-c(TRUE, FALSE, TRUE)</p>
-<p>vec[7]</p>
-<p>#Functions</p>
-<p>vec mean(vec) sd(vec) sum(vec) min(vec) summary(vec) sqrt(sum(vec))
-log(vec)</p>
-<p>#Logic operators</p>
-<p>1&gt;2 1&lt;2 1&lt;=2 1==1 1=1</p>
-<p>t&lt;- 1:10 t t[(t&gt;8)] t[(t&gt;8)| (t&lt;5)] t[t !=2]</p>
-<p>2 %in% t 32 %in% t</p>
-<p>#Data types</p>
-<p>mat1 &lt;- matrix(data = c(1,2,3), nrow = 3, ncol =3)</p>
-<p>mat1</p>
-<p>mat1[1] mat1[4] mat1[9]</p>
-<p>mat1[1,3] mat1[2,]</p>
-<p>#Data Frames</p>
-<p>#Markdown organization</p>
-<p>##Links</p>
-<ul>
-<li><a href="PLPA_assignments/RMnotes.md">RMnotes</a></li>
-</ul>
-<p>install.packages(fs)</p>
-<pre class="r"><code>fs::dir_tree() #provides file tree</code></pre>
-<pre><code>├── 134014729519277643.jpg
-├── Bull_richness.csv
-├── Coding_Challenge_1.R      #assignment
-├── Coding_Challenge_2.R    
-├── Coding_Challenge_3.R
-├── HW1.R
-├── HW2.1.R
-├── HW2.R
-├── HW3.R
-├── MycotoxinData.csv
+<p>Class content</p>
+<pre class="r"><code>fs::dir_tree()</code></pre>
+<pre class="bash"><code>├── 134014729519277643.jpg
+├── Coding_Challenges
+│   ├── Coding_Challenge_1.R
+│   ├── Coding_Challenge_2.R
+│   ├── Coding_Challenge_3.R
+│   └── Coding_Challenge_4_files
+│       ├── Coding_Challenge_4.html
+│       ├── Coding_Challenge_4.md
+│       ├── Coding_Challenge_4.Rmd
+│       ├── figure-docx
+│       │   └── pressure-1.png
+│       └── figure-html
+├── Data
+│   ├── Bull_richness.csv
+│   └── MycotoxinData.csv
+├── HW_Lecture_Notes
+│   ├── HW1.R
+│   ├── HW2.1.R
+│   ├── HW2.R
+│   ├── HW3.R
+│   └── RMnotes_files
+│       ├── figure-gfm
+│       │   ├── pressure-1.png
+│       │   └── unnamed-chunk-1-1.png
+│       ├── figure-html
+│       ├── RMnotes.html
+│       ├── RMnotes.md
+│       └── RMnotes.Rmd
 ├── PLPA_assignments.Rproj
 ├── README.html
-├── README.md                 #Top level directory README
-├── RMnotes.html
-├── RMnotes.md
-├── RMnotes.Rmd
-└── RMnotes_files
-    ├── figure-gfm
-    │   └── pressure-1.png
-    └── figure-html</code></pre>
-<p>#make zenodo account #link your git hub #find your repisitory #create
-a release #go back to git hub/repository #create a tag name #describe it
-if desired #publish and create a zip source code #it will take awhile to
-sync #copy markdown and paste into readme file #commit and push</p>
+└── README.md</code></pre>
 </div>
 
 

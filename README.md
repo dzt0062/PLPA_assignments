@@ -5,6 +5,7 @@ Class content
 fs::dir_tree()
 ```
 
+```bash
 ├── 134014729519277643.jpg
 ├── Coding_Challenges
 │   ├── Coding_Challenge_1.R
@@ -36,4 +37,5 @@ fs::dir_tree()
 ├── PLPA_assignments.Rproj
 ├── README.html
 └── README.md
+```
 
