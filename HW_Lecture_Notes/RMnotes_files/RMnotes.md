@@ -179,3 +179,48 @@ kable(mtcars, digits = 3, format = "markdown")
 | Ferrari Dino        | 19.7 |   6 | 145.0 | 175 | 3.62 | 2.770 | 15.50 |   0 |   1 |    5 |    6 |
 | Maserati Bora       | 15.0 |   8 | 301.0 | 335 | 3.54 | 3.570 | 14.60 |   0 |   1 |    5 |    8 |
 | Volvo 142E          | 21.4 |   4 | 121.0 | 109 | 4.11 | 2.780 | 18.60 |   1 |   1 |    4 |    2 |
+
+
+- [RMnotes](PLPA_assignments/RMnotes.md)
+
+
+install.packages(fs)
+
+```r
+fs::dir_tree()
+```
+
+```
+├── 134014729519277643.jpg
+├── Bull_richness.csv
+├── Coding_Challenge_1.R      #assignment
+├── Coding_Challenge_2.R    
+├── Coding_Challenge_3.R
+├── HW1.R
+├── HW2.1.R
+├── HW2.R
+├── HW3.R
+├── MycotoxinData.csv
+├── PLPA_assignments.Rproj
+├── README.html
+├── README.md                 #Top level directory README
+├── RMnotes.html
+├── RMnotes.md
+├── RMnotes.Rmd
+└── RMnotes_files
+    ├── figure-gfm
+    │   └── pressure-1.png
+    └── figure-html
+```
+
+#make zenodo account
+#link your git hub
+#find your repisitory
+#create a release
+#go back to git hub/repository
+#create a tag name
+#describe it if desired
+#publish and create a zip source code
+#it will take awhile to sync
+#copy markdown and paste into readme file
+#commit and push
