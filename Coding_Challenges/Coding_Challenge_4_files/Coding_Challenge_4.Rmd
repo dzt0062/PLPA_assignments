@@ -1,0 +1,129 @@
+---
+title: "Coding Challenge 4"
+author: "Doug Terza"
+date: "2026-02-19"
+output:
+  html_document:
+    theme: sandstone
+    toc: true          
+    toc_depth: 3       
+    toc_float: true
+    code_folding: hide
+  md_document:
+    variant: gfm
+  word_document:
+  pdf_document:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE)
+library(ggplot2)
+library(ggpubr)
+```
+
+# Question 1
+## Explain the following
+
+### a. YAML Headers
+A YAML header providers the render markdown with a title, author, and date. It also provides selection of the type of 
+output the render with be such as html, word, or pdf document. Global commands are also available such as hiding th R 
+chunks when rendered.
+
+### b. Literate programming
+Literate programming is writing code in a way that alows for machine rendering to be read and understood by a
+human. R markdown is an example of this.
+
+# Question 2
+## Take the code you wrote for coding challenge 3, question 5, and incorporate it into your R markdown file. 
+### a. Check out the paper here 
+[i.	Noel, Z.A., Roze, L.V., Breunig, M., Trail, F. 2022. Endophytic fungi as promising biocontrol agent to protect wheat from Fusarium graminearum head blight. Plant Disease.](https://doi.org/10.1094/PDIS-06-21-1253-RE)
+
+### b. Reading in the data csv file with a relative path
+```{r b}
+knitr::opts_chunk$set(warning = FALSE)
+data.toxin <- read.csv("MycotoxinData.csv", na.strings = "na")
+data.toxin$Treatment <- factor(data.toxin$Treatment, levels = c("NTC", "Fg", "Fg + 37", "Fg + 40", "Fg + 70"))
+str(data.toxin)
+```
+
+### c. Make a separate code chunk for the figures plotting the DON data, 15ADON, and Seedmass, and one for the three combined using ggarrange. 
+```{r c}
+cbbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+toxin.box4<- ggplot(data.toxin, aes(x = Treatment, y = DON, fill = Cultivar))+ 
+  geom_boxplot(color= "#000000", position = position_dodge(width = 0.85))+ 
+  scale_fill_manual(values = c("#56B4E9", "#009E73"))+ 
+  geom_point(shape = 21, color = "#000000", alpha = 0.6, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.85))+ 
+  ylab("DON (ppm)")+ 
+  xlab("")+ 
+  scale_color_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]), name = "Cultivar", labels = c("Ambassador", "Wheaton"))+
+  theme_classic()+ 
+  facet_wrap(~Cultivar)
+toxin.box4
+
+toxin.box5<- ggplot(data.toxin, aes(x = Treatment, y = X15ADON, fill = Cultivar))+ 
+  geom_boxplot(color= "#000000", position = position_dodge(width = 0.85))+
+  scale_fill_manual(values = c("#56B4E9", "#009E73"))+
+  geom_point(shape = 21, color = "#000000", alpha = 0.6, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.85))+
+  ylab("DON (ppm)")+
+  xlab("")+
+  scale_color_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]), name = "Cultivar", labels = c("Ambassador", "Wheaton"))+
+  theme_classic()+
+  facet_wrap(~Cultivar)
+toxin.box5
+
+toxin.box6<- ggplot(data.toxin, aes(x = Treatment, y = MassperSeed_mg, fill = Cultivar))+ 
+  geom_boxplot(color= "#000000", position = position_dodge(width = 0.85))+
+  scale_fill_manual(values = c("#56B4E9", "#009E73"))+
+  geom_point(shape = 21, color = "#000000", alpha = 0.6, position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.85))+
+  ylab("DON (ppm)")+
+  xlab("")+
+  scale_color_manual(values = c(cbbPalette[[3]], cbbPalette[[4]]), name = "Cultivar", labels = c("Ambassador", "Wheaton"))+
+  theme_classic()+
+  facet_wrap(~Cultivar)
+toxin.box6
+
+toxin.box7<- ggarrange(toxin.box4, toxin.box5, toxin.box6,
+                       labels = "auto",
+                       nrow = 1,
+                       ncol= 3,
+                       common.legend = TRUE)
+toxin.box7
+
+toxin.box8<-ggarrange((toxin.box4+
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}")),
+  toxin.box5+
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}"),
+  toxin.box6+
+  geom_pwc(aes(group = Treatment), method = "t_test", label = "{p.adj.format}{p.adj.signif}"),
+  labels = "auto",
+  nrow = 1,
+  ncol = 3,
+  common.legend = TRUE)
+toxin.box8
+ 
+```
+
+# Question 3
+## Knit your document together in the following formats: 
+### a. Format selection
+Within the YAML header I chose an html format; 
+ output: 
+  html_document
+### b. GitHub flavored markdown 
+ md_document:
+    variant: gfm
+
+# Question 4
+## Push the .docx or .pdf and .md files to GitHub inside a directory called Coding Challenge 4.
+Created a new repository specifically for this assignment
+
+# Question 5
+## Now edit, commit, and push the README file for your repository and include the following elements.
+### a. A clickable link in your README to your GitHub flavored .md file
+### b. A file tree of your GitHub repository.
+
+# Question 6
+## Please turn in the file generated in question 3a to canvas with a clickable link to your GitHub repository within the document. 
+
+
