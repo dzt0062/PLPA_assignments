@@ -15,7 +15,7 @@ microbiome.fungi2 <- select(microbiome.fungi, SampleID, Crop, Compartment:Fungic
 #The pipe %>% passes the result of one function directly into the next function, making code easier to read and chain together.
 #summarise() calculates summary statistics for variables in a dataset.
 #group_by() groups data by one or more variables so operations like summarise() are performed within each group.
-#Joining combines two datasets by matching rows based on a common key variable.
+#Joining combines two datasets by matching rows based on a common key variable via left_join() or right_join()
 #Pivotting reshaping data between wide and long formats using functions like pivot_longer() and pivot_wider().
 #Integration with plotting, Tidyverse data manipulation works directly with ggplot2, allowing cleaned or summarized data to be piped straight into plotting functions for visualization.
 
@@ -56,6 +56,7 @@ microbiome.fungi %>%
             sd.dev = sd(logRich)) %>%
   mutate(std.err = sd.dev/sqrt(n))
 
+#ggplot
 microbiome.fungi %>%
   select(SampleID, Crop, Compartment:Fungicide, richness) %>% # selecting columns
   group_by(Treatment, Fungicide) %>% 
