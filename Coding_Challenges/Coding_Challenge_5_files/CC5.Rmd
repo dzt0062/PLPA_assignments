@@ -36,7 +36,7 @@ data.div<-read.csv("PLPA_assignments/Data/Diversitydata.csv", na.strings = "na")
 ## Join the two dataframes together by the common column ‘Code’. Name the resulting dataframe alpha.
 
 ```{r}
-alpha<-left_join(data.div, data.meta, by = "Code")
+alpha<-left_join(data.div, data.meta, by = "Code") #joining the dataframes
 head(alpha)
 ```
 
@@ -47,7 +47,7 @@ head(alpha)
 
 ```{r}
 alpha_even <- alpha %>%
-  mutate(alpha, pielou = shannon/log(richness))
+  mutate(alpha, pielou = shannon/log(richness)) #new dataframe called alpha_even with a new column calculating Pielou's evenness
 head(alpha_even)
 ```
 
@@ -60,11 +60,11 @@ head(alpha_even)
 
 ```{r}
 alpha_average<-alpha_even %>%
-  group_by(Crop, Time_Point)%>%
-  summarise(Mean.pielou = mean(pielou), 
+  group_by(Crop, Time_Point)%>% # grouped by Crop and Time Pint
+  summarise(Mean.pielou = mean(pielou), #stats via summarize 
             n = n(), 
             sd.dev = sd(pielou)) %>%
-  mutate(std.err = sd.dev/sqrt(n))
+  mutate(std.err = sd.dev/sqrt(n)) #adding a column for standard dev.
 head(alpha_average)
 alpha_average
 ```
@@ -79,9 +79,9 @@ alpha_average
 
 ```{r}
 alpha_average2 <- alpha_average %>%
-  select(Time_Point, Crop, Mean.pielou)%>%
-  pivot_wider(names_from = Crop, values_from = Mean.pielou)%>%
-  mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean)
+  select(Time_Point, Crop, Mean.pielou)%>% # Select relevant columns
+  pivot_wider(names_from = Crop, values_from = Mean.pielou)%>% # Reshape the data creating new columns for each Crop with values from mean.even
+  mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean) #Calculated difference between two new columns named diff.cotton.even and diff.soybean.even
 head(alpha_average2)
 ```
 
@@ -94,9 +94,9 @@ head(alpha_average2)
 
 ```{r}
 alpha_average2 %>%
-  select(Time_Point, diff.cotton.even, diff.soybean.even)%>%
-   pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = "diff", values_to = "values")%>%
-    ggplot(aes(x = Time_Point, y = values, color = diff, group = diff))+
+  select(Time_Point, diff.cotton.even, diff.soybean.even)%>% #Select relevant columns
+   pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = "diff", values_to = "values")%>% # Reshape the data to long form with new column named diff that contains the values from diff.cotton.even and diff.soybean.even.
+    ggplot(aes(x = Time_Point, y = values, color = diff, group = diff))+ #ggplot with aes layering and classic theme
     geom_line()+
     theme_classic()+
     xlab("Time (hrs)") +

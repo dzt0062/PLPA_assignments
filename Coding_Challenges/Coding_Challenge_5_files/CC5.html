@@ -1601,7 +1601,7 @@ data.div&lt;-read.csv(&quot;PLPA_assignments/Data/Diversitydata.csv&quot;, na.st
 <div id="join-the-two-dataframes-together-by-the-common-column-code.-name-the-resulting-dataframe-alpha." class="section level2">
 <h2>Join the two dataframes together by the common column ‘Code’. Name
 the resulting dataframe alpha.</h2>
-<pre class="r"><code>alpha&lt;-left_join(data.div, data.meta, by = &quot;Code&quot;)
+<pre class="r"><code>alpha&lt;-left_join(data.div, data.meta, by = &quot;Code&quot;) #joining the dataframes
 head(alpha)</code></pre>
 <pre><code>##     Code  shannon invsimpson   simpson richness Crop Time_Point Replicate
 ## 1 S01_13 6.624921   210.7279 0.9952545     3319 Soil          0         1
@@ -1632,7 +1632,7 @@ index.</h3>
 <div id="b.-name-the-resulting-dataframe-alpha_even." class="section level3">
 <h3>b. Name the resulting dataframe alpha_even.</h3>
 <pre class="r"><code>alpha_even &lt;- alpha %&gt;%
-  mutate(alpha, pielou = shannon/log(richness))
+  mutate(alpha, pielou = shannon/log(richness)) #new dataframe called alpha_even with a new column calculating Pielou&#39;s evenness
 head(alpha_even)</code></pre>
 <pre><code>##     Code  shannon invsimpson   simpson richness Crop Time_Point Replicate
 ## 1 S01_13 6.624921   210.7279 0.9952545     3319 Soil          0         1
@@ -1671,11 +1671,11 @@ group.</h3>
 <div id="d.-name-the-resulting-dataframe-alpha_average" class="section level3">
 <h3>d. Name the resulting dataframe alpha_average</h3>
 <pre class="r"><code>alpha_average&lt;-alpha_even %&gt;%
-  group_by(Crop, Time_Point)%&gt;%
-  summarise(Mean.pielou = mean(pielou), 
+  group_by(Crop, Time_Point)%&gt;% # grouped by Crop and Time Pint
+  summarise(Mean.pielou = mean(pielou), #stats via summarize 
             n = n(), 
             sd.dev = sd(pielou)) %&gt;%
-  mutate(std.err = sd.dev/sqrt(n))</code></pre>
+  mutate(std.err = sd.dev/sqrt(n)) #adding a column for standard dev.</code></pre>
 <pre><code>## `summarise()` has grouped output by &#39;Crop&#39;. You can override using the
 ## `.groups` argument.</code></pre>
 <pre class="r"><code>head(alpha_average)</code></pre>
@@ -1735,9 +1735,9 @@ Cotton, and Soil and Soybean, respectively.</h3>
 <div id="e.-name-the-resulting-dataframe-alpha_average2" class="section level3">
 <h3>e. Name the resulting dataframe alpha_average2</h3>
 <pre class="r"><code>alpha_average2 &lt;- alpha_average %&gt;%
-  select(Time_Point, Crop, Mean.pielou)%&gt;%
-  pivot_wider(names_from = Crop, values_from = Mean.pielou)%&gt;%
-  mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean)
+  select(Time_Point, Crop, Mean.pielou)%&gt;% # Select relevant columns
+  pivot_wider(names_from = Crop, values_from = Mean.pielou)%&gt;% # Reshape the data creating new columns for each Crop with values from mean.even
+  mutate(diff.cotton.even = Soil - Cotton, diff.soybean.even = Soil - Soybean) #Calculated difference between two new columns named diff.cotton.even and diff.soybean.even
 head(alpha_average2)</code></pre>
 <pre><code>## # A tibble: 4 × 6
 ##   Time_Point Cotton  Soil Soybean diff.cotton.even diff.soybean.even
@@ -1760,9 +1760,9 @@ different colors for each ‘diff’ category. The column named ‘values’
 come from the pivot_longer. The resulting plot should look like the one
 to the right.</p>
 <pre class="r"><code>alpha_average2 %&gt;%
-  select(Time_Point, diff.cotton.even, diff.soybean.even)%&gt;%
-   pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = &quot;diff&quot;, values_to = &quot;values&quot;)%&gt;%
-    ggplot(aes(x = Time_Point, y = values, color = diff, group = diff))+
+  select(Time_Point, diff.cotton.even, diff.soybean.even)%&gt;% #Select relevant columns
+   pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = &quot;diff&quot;, values_to = &quot;values&quot;)%&gt;% # Reshape the data to long form with new column named diff that contains the values from diff.cotton.even and diff.soybean.even.
+    ggplot(aes(x = Time_Point, y = values, color = diff, group = diff))+ #ggplot with aes layering and classic theme
     geom_line()+
     theme_classic()+
     xlab(&quot;Time (hrs)&quot;) +
