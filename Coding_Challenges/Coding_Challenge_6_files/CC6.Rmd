@@ -1,0 +1,25 @@
+---
+title: "Coding Challenge 6"
+author: "DJT"
+date: "2026-03-19"
+output:
+  html_document:
+    theme: sandstone
+    toc: true  
+    toc_depth: 3 
+    toc_float: true
+    code_folding: hide
+  md_document:
+    variant: gfm
+  word_document:
+  pdf_document:
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Question 1
+## Regarding reproducibility, what is the main point of writing your own functions and iterations? 
+### The main point is to independtly generate syntax that executes the potential nuanced needs of your own dataset and analysis needs, and subsequently run that analysis on specific variables throughout the data set without needs to rewrite and re excute multiple lines of code, avoiding errors that may arise from issues like repetitive copying and pasting.
