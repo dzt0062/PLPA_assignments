@@ -3,23 +3,128 @@ title: "Coding Challenge 6"
 author: "DJT"
 date: "2026-03-19"
 output:
+  md_document:
+    variant: gfm
   html_document:
     theme: sandstone
     toc: true  
     toc_depth: 3 
     toc_float: true
     code_folding: hide
-  md_document:
-    variant: gfm
   word_document:
   pdf_document:
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(ggpubr)
+library(knitr)
+library(drc)
 ```
 
 # Question 1
 ## Regarding reproducibility, what is the main point of writing your own functions and iterations? 
-### The main point is to independtly generate syntax that executes the potential nuanced needs of your own dataset and analysis needs, and subsequently run that analysis on specific variables throughout the data set without needs to rewrite and re excute multiple lines of code, avoiding errors that may arise from issues like repetitive copying and pasting.
+### The main point is to independently generate syntax that executes the nuanced needs of your own dataset and analysis, and subsequently run that analysis on specific variables throughout the data set without needing to rewrite and re excute multiple lines of code, avoiding errors that may arise from issues like repetitive copying and pasting.
+
+# Question 2
+## Conceptual: In your own words, describe: 1) how to write a function in R, and 2) how to write a for loop in R. In your answer, be specific about: basic syntax, where the code is written, and how results are returned or stored. (Answer in plain text; no code required for this question.)
+### 1) To write a unique function In R use function(), use <- to save it as an named object. Once executed it should show up in the environment as an object under functions. Within the parantheses write the names of the input arguments needed to succesfully return the desired values. After the closed parentheses a curly braceket {} will open. This is where the syntax is written for your desired opertions to be stored. At the end of the desired operations, conversions, etc. use return() to return the desired outcome of the function.
+### 2) To write an i for loop write for then open parentheses. Inside write "i in" specified data set or sequence that will be looped. Next, {} will open to write the desired code you want to happen to each iteration within that specified data. The output of the function can bestored as an object and then printed via print().
+
+# Question 3
+## Read in the Cities.csv file from Canvas using a relative file path.
+
+```{r}
+cities <- read.csv("Cities.csv")
+head(cities)
+```
+
+# Question 4
+## Write a function that calculates the distance (in kilometers) between two pairs of geographic coordinates using the Haversine formula.
+### a.	Function requirements: i.	Inputs: lat1, lon1, lat2, lon2, ii.	The function must return a single numeric value called distance_km, iii.	All code shown below must be placed inside the function body
+
+```{r}
+gps_to_km <- function(lat1, lon1, lat2, lon2){ #using the haversine formula to create a function named gps_to_km
+  rad.lat1 <- lat1 * pi/180
+  rad.lon1 <- lon1 * pi/180
+  rad.lat2 <- lat2 * pi/180
+  rad.lon2 <- lon2 * pi/180
+  delta_lat <- rad.lat2 - rad.lat1
+  delta_lon <- rad.lon2 - rad.lon1
+    a <- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+    c <- 2 * asin(sqrt(a))
+      earth_radius <- 6378137
+      distance_km <- (earth_radius * c)/1000
+      return(distance_km) # returns the difference in a set of gps coordinates 
+}
+```
+
+# Question 5
+## Using your function from question 4, calculate the distance between Auburn, AL and New York City.
+### a.	Subset or extract only the latitude and longitude values needed from Cities.csv
+### b.	Pass those values into your function
+### c.	Store the result in an object
+
+```{r}
+distance <- cities %>% #object name is distance for the distance between Auburn and NY
+  filter(city %in% c("Auburn", "New York")) %>% # select auburn and new york from the data 
+    mutate(
+    distance_km = gps_to_km(lat[1], long[1], lat[2], long[2]) #using the gps function to calculate the distance between the two  cities
+  ) %>%
+  pull(distance_km) %>% #pulls data from the column 
+  first() #pulls the first value
+
+distance
+```
+
+# Question 6
+## Use your distance function inside a for loop to calculate the distance between Auburn, AL and every other city in Cities.csv. Each iteration should calculate the distance for one city
+
+```{r}
+auburn <- cities %>% #dataset
+  filter(city == "Auburn") #select auburn from the cities 
+
+distances <- numeric(nrow(cities)) # creats a numeric vector equal to the number of cities
+
+for (i in 1:nrow(cities)) { # runs the loop 
+  distances[i] <- gps_to_km( # stores all the iterations in distances
+    auburn$lat, auburn$long,
+    cities$lat[i], cities$long[i] #changes to the next city
+  )
+}
+
+cities$distance_from_auburn <- distances # adds the distances to the dataframe cities in a column called distances_from_auburn
+
+cities$distance_from_auburn
+
+
+```
+# Question 7
+## Modify your loop so that each iteration appends one new row to a dataframe with the following columns: City1 (the other city), City2 (Auburn), Distance_km
+
+```{r}
+how_far <- NULL #creates an empty object
+
+for (i in 1:nrow(cities)){ #runs the loop of all the cities and their distance from auburn
+    if (cities$city[i] != "Auburn"){ #checks to see if the iteration is auburn and skips it
+        distance <- gps_to_km(
+        auburn$lat, auburn$long, cities$lat[i], cities$long[i]
+    )
+        new_row <- data.frame( # creates a new datframe as the object new_row
+        City1 = cities$city[i],
+        City2 = "Auburn",
+        Distance_km = distance
+    )
+    how_far <- rbind(how_far, new_row) #Appends the new row to your results table "how_far"
+  }
+}
+how_far
+```
+
+# Question 8
+## Commit and push a gfm .md file to GitHub inside a directory called Coding Challenge 6. Provide me a link to your github written as a clickable link in your rendered .pdf, .docx, or .html
+## hee is a link to my Coding Challenges [dzt006 plpa assignments Coding Challenges](https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges)
+
+ 

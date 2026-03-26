@@ -1591,14 +1591,222 @@ border-radius: 0px;
 <div id="regarding-reproducibility-what-is-the-main-point-of-writing-your-own-functions-and-iterations" class="section level2">
 <h2>Regarding reproducibility, what is the main point of writing your
 own functions and iterations?</h2>
-<div id="the-main-point-is-to-independtly-generate-syntax-that-executes-the-potential-nuanced-needs-of-your-own-dataset-and-analysis-needs-and-subsequently-run-that-analysis-on-specific-variables-throughout-the-data-set-without-needs-to-rewrite-and-re-excute-multiple-lines-of-code-avoiding-errors-that-may-arise-from-issues-like-repetitive-copying-and-pasting." class="section level3">
+<div id="the-main-point-is-to-independtly-generate-syntax-that-executes-the-potential-nuanced-needs-of-your-own-dataset-and-analysis-and-subsequently-run-that-analysis-on-specific-variables-throughout-the-data-set-without-needing-to-rewrite-and-re-excute-multiple-lines-of-code-avoiding-errors-that-may-arise-from-issues-like-repetitive-copying-and-pasting." class="section level3">
 <h3>The main point is to independtly generate syntax that executes the
-potential nuanced needs of your own dataset and analysis needs, and
+potential nuanced needs of your own dataset and analysis, and
 subsequently run that analysis on specific variables throughout the data
-set without needs to rewrite and re excute multiple lines of code,
+set without needing to rewrite and re excute multiple lines of code,
 avoiding errors that may arise from issues like repetitive copying and
 pasting.</h3>
 </div>
+</div>
+</div>
+<div id="question-2" class="section level1">
+<h1>Question 2</h1>
+<div id="conceptual-in-your-own-words-describe-1-how-to-write-a-function-in-r-and-2-how-to-write-a-for-loop-in-r.-in-your-answer-be-specific-about-basic-syntax-where-the-code-is-written-and-how-results-are-returned-or-stored.-answer-in-plain-text-no-code-required-for-this-question." class="section level2">
+<h2>Conceptual: In your own words, describe: 1) how to write a function
+in R, and 2) how to write a for loop in R. In your answer, be specific
+about: basic syntax, where the code is written, and how results are
+returned or stored. (Answer in plain text; no code required for this
+question.)</h2>
+<div id="to-write-a-unique-function-in-r-use-function-use---to-save-it-as-an-named-object.-once-executed-it-should-show-up-in-the-environment-as-an-object-under-functions.-within-the-parantheses-write-the-names-of-the-input-arguments-needed-to-succesfully-return-the-desired-values.-after-the-closed-parentheses-a-curly-braceket-will-open.-this-is-where-the-syntax-is-written-for-your-desired-opertions-to-be-stored.-at-the-end-of-the-desired-operations-conversions-etc.-use-return-to-return-the-desired-outcome-of-the-function." class="section level3">
+<h3>1) To write a unique function In R use function(), use &lt;- to save
+it as an named object. Once executed it should show up in the
+environment as an object under functions. Within the parantheses write
+the names of the input arguments needed to succesfully return the
+desired values. After the closed parentheses a curly braceket {} will
+open. This is where the syntax is written for your desired opertions to
+be stored. At the end of the desired operations, conversions, etc. use
+return() to return the desired outcome of the function.</h3>
+</div>
+<div id="to-write-an-i-for-loop-write-for-then-open-parentheses.-inside-write-i-in-specified-data-set-or-sequence-that-will-be-looped.-next-will-open-to-write-the-desired-code-you-want-to-happen-to-each-iteration-within-that-specified-data.-the-output-of-the-function-can-bestored-as-an-object-and-then-printed-via-print." class="section level3">
+<h3>2) To write an i for loop write for then open parentheses. Inside
+write “i in” specified data set or sequence that will be looped. Next,
+{} will open to write the desired code you want to happen to each
+iteration within that specified data. The output of the function can
+bestored as an object and then printed via print().</h3>
+</div>
+</div>
+</div>
+<div id="question-3" class="section level1">
+<h1>Question 3</h1>
+<div id="read-in-the-cities.csv-file-from-canvas-using-a-relative-file-path." class="section level2">
+<h2>Read in the Cities.csv file from Canvas using a relative file
+path.</h2>
+<pre class="r"><code>cities &lt;- read.csv(&quot;Cities.csv&quot;)
+head(cities)</code></pre>
+<pre><code>##          city  city_ascii state_id state_name county_fips county_name     lat
+## 1    New York    New York       NY   New York       36081      Queens 40.6943
+## 2 Los Angeles Los Angeles       CA California        6037 Los Angeles 34.1141
+## 3     Chicago     Chicago       IL   Illinois       17031        Cook 41.8375
+## 4       Miami       Miami       FL    Florida       12086  Miami-Dade 25.7840
+## 5     Houston     Houston       TX      Texas       48201      Harris 29.7860
+## 6      Dallas      Dallas       TX      Texas       48113      Dallas 32.7935
+##        long population density
+## 1  -73.9249   18832416 10943.7
+## 2 -118.4068   11885717  3165.8
+## 3  -87.6866    8489066  4590.3
+## 4  -80.2101    6113982  4791.1
+## 5  -95.3885    6046392  1386.5
+## 6  -96.7667    5843632  1477.2</code></pre>
+</div>
+</div>
+<div id="question-4" class="section level1">
+<h1>Question 4</h1>
+<div id="write-a-function-that-calculates-the-distance-in-kilometers-between-two-pairs-of-geographic-coordinates-using-the-haversine-formula." class="section level2">
+<h2>Write a function that calculates the distance (in kilometers)
+between two pairs of geographic coordinates using the Haversine
+formula.</h2>
+<div id="a.-function-requirements-i.-inputs-lat1-lon1-lat2-lon2-ii.-the-function-must-return-a-single-numeric-value-called-distance_km-iii.-all-code-shown-below-must-be-placed-inside-the-function-body" class="section level3">
+<h3>a. Function requirements: i. Inputs: lat1, lon1, lat2, lon2, ii. The
+function must return a single numeric value called distance_km, iii. All
+code shown below must be placed inside the function body</h3>
+<pre class="r"><code>gps_to_km &lt;- function(lat1, lon1, lat2, lon2){ #using the haversine formula to create a function named gps_to_km
+  rad.lat1 &lt;- lat1 * pi/180
+  rad.lon1 &lt;- lon1 * pi/180
+  rad.lat2 &lt;- lat2 * pi/180
+  rad.lon2 &lt;- lon2 * pi/180
+  delta_lat &lt;- rad.lat2 - rad.lat1
+  delta_lon &lt;- rad.lon2 - rad.lon1
+    a &lt;- sin(delta_lat / 2)^2 + cos(rad.lat1) * cos(rad.lat2) * sin(delta_lon / 2)^2
+    c &lt;- 2 * asin(sqrt(a))
+      earth_radius &lt;- 6378137
+      distance_km &lt;- (earth_radius * c)/1000
+      return(distance_km) # returns the difference in a set of gps coordinates 
+}</code></pre>
+</div>
+</div>
+</div>
+<div id="question-5" class="section level1">
+<h1>Question 5</h1>
+<div id="using-your-function-from-question-4-calculate-the-distance-between-auburn-al-and-new-york-city." class="section level2">
+<h2>Using your function from question 4, calculate the distance between
+Auburn, AL and New York City.</h2>
+<div id="a.-subset-or-extract-only-the-latitude-and-longitude-values-needed-from-cities.csv" class="section level3">
+<h3>a. Subset or extract only the latitude and longitude values needed
+from Cities.csv</h3>
+</div>
+<div id="b.-pass-those-values-into-your-function" class="section level3">
+<h3>b. Pass those values into your function</h3>
+</div>
+<div id="c.-store-the-result-in-an-object" class="section level3">
+<h3>c. Store the result in an object</h3>
+<pre class="r"><code>distance &lt;- cities %&gt;% #object name is distance for the distance between Auburn and NY
+  filter(city %in% c(&quot;Auburn&quot;, &quot;New York&quot;)) %&gt;% # select auburn and new york from the data 
+    mutate(
+    distance_km = gps_to_km(lat[1], long[1], lat[2], long[2]) #using the gps function to calculate the distance between the two  cities
+  ) %&gt;%
+  pull(distance_km) %&gt;% #pulls data from the column 
+  first() #pulls the first value
+
+distance</code></pre>
+<pre><code>## [1] 1367.854</code></pre>
+</div>
+</div>
+</div>
+<div id="question-6" class="section level1">
+<h1>Question 6</h1>
+<div id="use-your-distance-function-inside-a-for-loop-to-calculate-the-distance-between-auburn-al-and-every-other-city-in-cities.csv.-each-iteration-should-calculate-the-distance-for-one-city" class="section level2">
+<h2>Use your distance function inside a for loop to calculate the
+distance between Auburn, AL and every other city in Cities.csv. Each
+iteration should calculate the distance for one city</h2>
+<pre class="r"><code>auburn &lt;- cities %&gt;% #dataset
+  filter(city == &quot;Auburn&quot;) #select auburn from the cities 
+
+distances &lt;- numeric(nrow(cities)) # creats a numeric vector equal to the number of cities
+
+for (i in 1:nrow(cities)) { # runs the loop 
+  distances[i] &lt;- gps_to_km( # stores all the iterations in distances
+    auburn$lat, auburn$long,
+    cities$lat[i], cities$long[i] #changes to the next city
+  )
+}
+
+cities$distance_from_auburn &lt;- distances # adds the distances to the dataframe cities in a column called distances_from_auburn
+
+cities$distance_from_auburn</code></pre>
+<pre><code>##  [1] 1367.8540 3051.8382 1045.5213  916.4138  993.0298 1056.0217 1239.9732
+##  [8]  162.5121 1036.9900 1665.6985 2476.2552 1108.2288 3507.9589 3388.3656
+## [15] 2951.3816 1530.2000  591.1181 1363.2072 1909.7897 1380.1382 2961.1199
+## [22] 2752.8142 1092.2595  796.7541 3479.5376 1290.5492 3301.9923 1191.6657
+## [29]  608.2035 2504.6312 3337.2781  800.1452 1001.0879  732.5906 1371.1633
+## [36] 1091.8970 1043.2727  851.3423 1382.3721    0.0000</code></pre>
+</div>
+</div>
+<div id="question-7" class="section level1">
+<h1>Question 7</h1>
+<div id="modify-your-loop-so-that-each-iteration-appends-one-new-row-to-a-dataframe-with-the-following-columns-city1-the-other-city-city2-auburn-distance_km" class="section level2">
+<h2>Modify your loop so that each iteration appends one new row to a
+dataframe with the following columns: City1 (the other city), City2
+(Auburn), Distance_km</h2>
+<pre class="r"><code>how_far &lt;- NULL #creates an empty object
+
+for (i in 1:nrow(cities)){ #runs the loop of all the cities and their distance from auburn
+    if (cities$city[i] != &quot;Auburn&quot;){ #checks to see if the iteration is auburn and skips it
+        distance &lt;- gps_to_km(
+        auburn$lat, auburn$long, cities$lat[i], cities$long[i]
+    )
+        new_row &lt;- data.frame( # creates a new datframe as the object new_row
+        City1 = cities$city[i],
+        City2 = &quot;Auburn&quot;,
+        Distance_km = distance
+    )
+    how_far &lt;- rbind(how_far, new_row) #Appends the new row to your results table &quot;how_far&quot;
+  }
+}
+how_far</code></pre>
+<pre><code>##            City1  City2 Distance_km
+## 1       New York Auburn   1367.8540
+## 2    Los Angeles Auburn   3051.8382
+## 3        Chicago Auburn   1045.5213
+## 4          Miami Auburn    916.4138
+## 5        Houston Auburn    993.0298
+## 6         Dallas Auburn   1056.0217
+## 7   Philadelphia Auburn   1239.9732
+## 8        Atlanta Auburn    162.5121
+## 9     Washington Auburn   1036.9900
+## 10        Boston Auburn   1665.6985
+## 11       Phoenix Auburn   2476.2552
+## 12       Detroit Auburn   1108.2288
+## 13       Seattle Auburn   3507.9589
+## 14 San Francisco Auburn   3388.3656
+## 15     San Diego Auburn   2951.3816
+## 16   Minneapolis Auburn   1530.2000
+## 17         Tampa Auburn    591.1181
+## 18      Brooklyn Auburn   1363.2072
+## 19        Denver Auburn   1909.7897
+## 20        Queens Auburn   1380.1382
+## 21     Riverside Auburn   2961.1199
+## 22     Las Vegas Auburn   2752.8142
+## 23     Baltimore Auburn   1092.2595
+## 24     St. Louis Auburn    796.7541
+## 25      Portland Auburn   3479.5376
+## 26   San Antonio Auburn   1290.5492
+## 27    Sacramento Auburn   3301.9923
+## 28        Austin Auburn   1191.6657
+## 29       Orlando Auburn    608.2035
+## 30      San Juan Auburn   2504.6312
+## 31      San Jose Auburn   3337.2781
+## 32  Indianapolis Auburn    800.1452
+## 33    Pittsburgh Auburn   1001.0879
+## 34    Cincinnati Auburn    732.5906
+## 35     Manhattan Auburn   1371.1633
+## 36   Kansas City Auburn   1091.8970
+## 37     Cleveland Auburn   1043.2727
+## 38      Columbus Auburn    851.3423
+## 39         Bronx Auburn   1382.3721</code></pre>
+</div>
+</div>
+<div id="question-8" class="section level1">
+<h1>Question 8</h1>
+<div id="commit-and-push-a-gfm-.md-file-to-github-inside-a-directory-called-coding-challenge-6.-provide-me-a-link-to-your-github-written-as-a-clickable-link-in-your-rendered-.pdf-.docx-or-.html" class="section level2">
+<h2>Commit and push a gfm .md file to GitHub inside a directory called
+Coding Challenge 6. Provide me a link to your github written as a
+clickable link in your rendered .pdf, .docx, or .html</h2>
+</div>
+<div id="hee-is-a-link-to-my-coding-challenges-dzt006-plpa-assignments-coding-challenges" class="section level2">
+<h2>hee is a link to my Coding Challenges <a href="https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges">dzt006
+plpa assignments Coding Challenges</a></h2>
 </div>
 </div>
 
