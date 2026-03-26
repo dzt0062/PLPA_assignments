@@ -128,7 +128,7 @@ for (i in 1:nrow(cities)){ #runs the loop of all the cities and their distance f
         City2 = "Auburn",
         Distance_km = distance
     )
-    how_far <- rbind(how_far, new_row) #Appends the new row to your results table "how_far"
+    how_far <- rbind(how_far, new_row) #Appends the new row to the table "how_far"
   }
 }
 how_far
