@@ -179,4 +179,4 @@ how_far
 
 ## Commit and push a gfm .md file to GitHub inside a directory called Coding Challenge 6. Provide me a link to your github written as a clickable link in your rendered .pdf, .docx, or .html
 
-## hee is a link to my Coding Challenges [dzt006 plpa assignments Coding Challenges](https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges)
+## here is a link to my Coding Challenges [dzt006 plpa assignments Coding Challenges](https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges)
