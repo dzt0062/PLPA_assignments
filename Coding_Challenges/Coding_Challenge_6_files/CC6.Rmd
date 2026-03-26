@@ -90,7 +90,7 @@ distances <- numeric(nrow(cities)) # creats a numeric vector equal to the number
 
 for (i in 1:nrow(cities)) { # runs the loop 
   distances[i] <- gps_to_km( # stores all the iterations in distances
-    auburn$lat, auburn$long,
+    auburn$lat, auburn$long, #keeps auburn as city 1 in each iteration
     cities$lat[i], cities$long[i] #changes to the next city
   )
 }
@@ -126,5 +126,6 @@ how_far
 # Question 8
 ## Commit and push a gfm .md file to GitHub inside a directory called Coding Challenge 6. Provide me a link to your github written as a clickable link in your rendered .pdf, .docx, or .html
 ## here is a link to my Coding Challenges [dzt006 plpa assignments Coding Challenges](https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges)
+
 
  

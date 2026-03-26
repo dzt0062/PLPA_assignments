@@ -94,7 +94,7 @@ distances <- numeric(nrow(cities)) # creats a numeric vector equal to the number
 
 for (i in 1:nrow(cities)) { # runs the loop 
   distances[i] <- gps_to_km( # stores all the iterations in distances
-    auburn$lat, auburn$long,
+    auburn$lat, auburn$long, #keeps auburn as city 1 in each iteration
     cities$lat[i], cities$long[i] #changes to the next city
   )
 }
