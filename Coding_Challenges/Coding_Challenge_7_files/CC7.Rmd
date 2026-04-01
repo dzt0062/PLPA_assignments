@@ -118,5 +118,6 @@ plot_cldbars_onefactor <- function(lm_model, factor) {
 plot_cldbars_onefactor(lm.simple.emergence, "Treatment")
 ```
 
-
+# Link to dzt0062 git
+[CC7 - gfm]([https://github.com/dzt0062/PLPA_assignments/blob/main/Coding_Challenges/Coding_Challenge_7_files/CC7.Rm)
 

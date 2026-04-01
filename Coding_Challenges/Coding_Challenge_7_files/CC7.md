@@ -311,3 +311,8 @@ plot_cldbars_onefactor(lm.simple.emergence, "Treatment")
 ```
 
 ![](CC7_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+# Link to dzt0062 git
+
+[CC7 -
+gfm](%5Bhttps://github.com/dzt0062/PLPA_assignments/blob/main/Coding_Challenges/Coding_Challenge_7_files/CC7.Rm)
