@@ -3,14 +3,14 @@ title: "Coding Challenge 7"
 author: "DJT"
 date: "2026-03-26"
 output:
-  md_document:
-    variant: gfm
   html_document:
     theme: sandstone
     toc: true  
     toc_depth: 3 
     toc_float: true
     code_folding: hide
+  md_document:
+    variant: gfm
   word_document:
   pdf_document:
 ---
@@ -118,6 +118,5 @@ plot_cldbars_onefactor <- function(lm_model, factor) {
 plot_cldbars_onefactor(lm.simple.emergence, "Treatment")
 ```
 
-# Link to dzt0062 git
-[CC7 - gfm]([https://github.com/dzt0062/PLPA_assignments/blob/main/Coding_Challenges/Coding_Challenge_7_files/CC7.Rm)
+[Coding Challenge 7](https://github.com/dzt0062/PLPA_assignments/tree/main/Coding_Challenges/Coding_Challenge_7_files)
 
