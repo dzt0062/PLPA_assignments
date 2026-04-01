@@ -1,0 +1,122 @@
+---
+title: "Coding Challenge 7"
+author: "DJT"
+date: "2026-03-26"
+output:
+  md_document:
+    variant: gfm
+  html_document:
+    theme: sandstone
+    toc: true  
+    toc_depth: 3 
+    toc_float: true
+    code_folding: hide
+  word_document:
+  pdf_document:
+---
+
+```{r setup, include=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(ggpubr)
+library(knitr)
+library(drc)
+library(lme4)
+library(emmeans)
+library(multcomp)
+library(multcompView)
+```
+
+# Question 1
+## Read in the data called “PlantEmergence.csv” using a relative file path and load the following libraries. tidyverse, lme4, emmeans, multcomp, and multcompView. Turn the Treatment , DaysAfterPlanting  and Rep into factors using the function as.factor
+### See previous code section for loaded libraries.
+
+```{r}
+PlantEmergence <- read.csv("PlantEmergence.csv")
+head(PlantEmergence)
+
+#saving columns into factors
+PlantEmergence$Treatment <- as.factor(PlantEmergence$Treatment) 
+PlantEmergence$DaysAfterPlanting <- as.factor(PlantEmergence$DaysAfterPlanting)
+PlantEmergence$Rep <- as.factor(PlantEmergence$Rep)
+
+```
+
+# Question 2
+## Fit a linear model to predict Emergence using Treatment and DaysAfterPlanting along with the interaction. Provide the summary of the linear model and ANOVA results.
+
+```{r}
+lm.interaction.emergence <- lm(Emergence ~ Treatment * DaysAfterPlanting, data = PlantEmergence) #linear regression with interaction via *
+
+summary(lm.interaction.emergence) #Model summary
+
+anova(lm.interaction.emergence) #ANOVA table
+
+```
+# Question 3
+## Based on the results of the linear model in question 2, do you need to fit the interaction term? Provide a simplified linear model without the interaction term but still testing both main effects. Provide the summary and ANOVA results. Then, interpret the intercept and the coefficient for Treatment 2.
+### Based on the results from question 2 you do not need to fit the interaction term, it had a p value of 1. Treatment 2 has, on average, 134.53 fewer emerged plants than Treatment 1, holding DaysAfterPlanting constant with a p value less than .05.
+
+```{r}
+lm.simple.emergence <- lm(Emergence ~ Treatment+DaysAfterPlanting, data = PlantEmergence) #simple linear regression with +
+
+summary(lm.simple.emergence)
+
+anova(lm.simple.emergence)
+```
+# Question 4
+## Calculate the least square means for Treatment using the emmeans package and perform a Tukey separation with the compact letter display using the cld function. Interpret the results.
+
+```{r}
+lsmeans <- emmeans(lm.interaction.emergence, ~Treatment) # calculating the least sqaure means and saving it as an object
+lsmeans
+
+results_lsmeans <- cld(lsmeans, alpha = 0.05, details = TRUE)
+results_lsmeans
+```
+# Question 5
+## The provided function lets you dynamically add a linear model plus one factor from that model and plots a bar chart with letters denoting treatment differences. Use this model to generate the plot shown below. Explain the significance of the letters.
+### The letter indicates the statistical significance between the treatments. Shared letters represent non significance whereas unique letters do as indicated by the p value less than .05. Treatment 2 is significantly different than all other treatments and treatment 7 is significantly different from 3, 5, and 6.
+
+```{r}
+plot_cldbars_onefactor <- function(lm_model, factor) {
+  data <- lm_model$model
+  variables <- colnames(lm_model$model)
+  dependent_var <- variables[1]
+  independent_var <- variables[2:length(variables)]
+
+  lsmeans <- emmeans(lm_model, as.formula(paste("~", factor))) # estimate lsmeans 
+  Results_lsmeans <- cld(lsmeans, alpha = 0.05, reversed = TRUE, details = TRUE, Letters = letters) # contrast with Tukey adjustment by default.
+  
+  # Extracting the letters for the bars
+  sig.diff.letters <- data.frame(Results_lsmeans$emmeans[,1], 
+                                 str_trim(Results_lsmeans$emmeans[,7]))
+  colnames(sig.diff.letters) <- c(factor, "Letters")
+  
+  # for plotting with letters from significance test
+  ave_stand2 <- lm_model$model %>%
+    group_by(!!sym(factor)) %>%
+    dplyr::summarize(
+      ave.emerge = mean(.data[[dependent_var]], na.rm = TRUE),
+      se = sd(.data[[dependent_var]]) / sqrt(n())
+    ) %>%
+    left_join(sig.diff.letters, by = factor) %>%
+    mutate(letter_position = ave.emerge + 10 * se)
+  
+  plot <- ggplot(data, aes(x = !! sym(factor), y = !! sym(dependent_var))) + 
+    stat_summary(fun = mean, geom = "bar") +
+    stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.5) +
+    ylab("Number of emerged plants") + 
+    geom_jitter(width = 0.02, alpha = 0.5) +
+    geom_text(data = ave_stand2, aes(label = Letters, y = letter_position), size = 5) +
+    xlab(as.character(factor)) +
+    theme_classic()
+  
+  return(plot)
+}
+plot_cldbars_onefactor(lm.simple.emergence, "Treatment")
+```
+
+
+
