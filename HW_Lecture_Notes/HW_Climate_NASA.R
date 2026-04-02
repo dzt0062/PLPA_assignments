@@ -32,3 +32,5 @@ daily.ftcampbell <- get_power(
 )
 
 head(daily.ftcampbell)
+
+#I would then join this to the dates in which I conducted tests
