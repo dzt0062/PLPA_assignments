@@ -1,5 +1,7 @@
 #additional learning
-# creating a radar plaot for a "readiness assessment with fake data"
+# creating a radar graph for a "Readiness Assessment." I conduct performance testing for soldiers with
+# various  equipment and metrics and would like to generate a report that equally weighs the metrics and provides
+# a visual representation of their readiness as it pertains to health and performance. 
 
 library(ggplot2)
 library(dplyr)
