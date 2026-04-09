@@ -30,3 +30,39 @@ install.packages("MASS")
 #check renv.lock to see if mass was loaded
 
 install.packages("paletteer")
+
+#Git hub stores the instructions on the location of the packages, and restore:: is required to get those into 
+
+library(paletteer)
+#limitations include R version and PanDoc
+
+
+#Class notes
+
+#Subsetting and Indexing 
+
+mtcars
+
+mtcars[1,] #output the first row
+mtcars[1,4] #output the first row and 4th column observation
+
+#find all rows such that VS = 1
+mtcars[mtcars$vs==1,]
+
+mtcars$hp[mtcars$vs==1 & mtcars$gear==4]
+
+subset(mtcars, vs == 1)
+
+subset(mtcars, vs == 1)
+
+#test questions, derived from the second half of the course.
+
+
+
+
+
+
+
+
+
+
