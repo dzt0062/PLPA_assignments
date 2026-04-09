@@ -5,6 +5,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+#fake data
 data <- data.frame(
   VO2 = 52,
   Grip = 55,
@@ -15,7 +16,7 @@ data <- data.frame(
 
 percentile <- function(x, ref) ecdf(ref)(x) * 100
 
-# Example reference (replace with real norms)
+# Example reference 
 ref <- data.frame(
   VO2 = rnorm(100, 50, 5),
   Grip = rnorm(100, 50, 10),
@@ -24,6 +25,7 @@ ref <- data.frame(
   RHR = rnorm(100, 65, 10)
 )
 
+#normalizing to percentiles to have equal weight
 scores <- data.frame(
   VO2 = percentile(data$VO2, ref$VO2),
   Grip = percentile(data$Grip, ref$Grip),
@@ -32,6 +34,7 @@ scores <- data.frame(
   RHR = 100 - percentile(data$RHR, ref$RHR) # lower is better
 )
 
+#trying to make a closeed geometric shape
 radar_df_closed <- scores %>%
   pivot_longer(cols = everything(),
                names_to = "Metric",
